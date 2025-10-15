@@ -9,6 +9,16 @@ spec:
     repoURL: https://github.com/lm-academy/argocd-example-apps-labs.git
     targetRevision: HEAD
     path: helm-guestbook
+    helm:
+      valueFiles:
+        - values-custom.yaml
+      valuesObject:
+        replicaCount: 2
+        service:
+          type: NodePort
+      parameters:
+        - name: replicaCount
+          value: '1'
   destination:
     server: https://kubernetes.default.svc
     namespace: default
